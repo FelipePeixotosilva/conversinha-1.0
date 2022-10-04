@@ -6,7 +6,7 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/04 19:12:03 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:43:01 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 void	ft_putnbr(int n)
 {
-	int c;
+	int	c;
+
 	if (n == -2147483648)
 	{
-		write(1,"-2147483648",11);
+		write(1, "-2147483648", 11);
 		return ;
 	}
 	if (n == 2147483647)
 	{
-		write (1,"2147483647",10);
+		write (1, "2147483647", 10);
 		return ;
 	}
 	if (n >= 0 && n <= 9)
 	{
-		c = n + '0'; 
-		write(1,&c,1);
+		c = n + '0';
+		write(1, &c, 1);
 	}
 	else
 	{
@@ -36,10 +37,12 @@ void	ft_putnbr(int n)
 		ft_putnbr (n % 10);
 	}
 }
+
 void	handler(int sig, siginfo_t *info, void *oact)
 {
 	static int				nbr;
 	static unsigned char	c;
+
 	(void) *oact;
 	if (sig == SIGUSR1)
 	{
@@ -48,13 +51,12 @@ void	handler(int sig, siginfo_t *info, void *oact)
 	nbr++;
 	if (nbr == 8)
 	{
-        if(c != 0)
-		    write(1, &c, 1);
+		if (c != 0)
+			write(1, &c, 1);
 		else
-            kill(info -> si_pid, SIGUSR1);
-        nbr = 0;
+			kill(info -> si_pid, SIGUSR1);
+		nbr = 0;
 		c = 0;
-        
 	}
 }
 
@@ -64,10 +66,11 @@ int	main(void)
 	int					pid;
 
 	action.sa_sigaction = handler;
-    action.sa_flags = SA_SIGINFO;
+	action.sa_flags = SA_SIGINFO;
 	pid = getpid();
-	write(1,"My pid:\n",11);
+	write(1, "My pid:\n", 11);
 	ft_putnbr(pid);
+	write(1, "\n", 1);
 	while (1)
 	{
 		sigaction (SIGUSR1, &action, NULL);
