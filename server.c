@@ -14,21 +14,22 @@
 
 void	ft_putnbr(int n)
 {
-	int c;
+	int	c;
+
 	if (n == -2147483648)
 	{
-		write(1,"-2147483648",11);
+		write(1, "-2147483648", 11);
 		return ;
 	}
 	if (n == 2147483647)
 	{
-		write (1,"2147483647",10);
+		write (1, "2147483647", 10);
 		return ;
 	}
 	if (n >= 0 && n <= 9)
 	{
-		c = n + '0'; 
-		write(1,&c,1);
+		c = n + '0';
+		write(1, &c, 1);
 	}
 	else
 	{
@@ -36,6 +37,7 @@ void	ft_putnbr(int n)
 		ft_putnbr (n % 10);
 	}
 }
+
 void	handler(int sig)
 {
 	static int				nbr;
@@ -61,8 +63,9 @@ int	main(void)
 
 	action.sa_handler = handler;
 	pid = getpid();
-	write(1,"My pid:\n",11);
+	write(1, "My pid:", 7);
 	ft_putnbr(pid);
+	write(1, "\n", 1);
 	while (1)
 	{
 		sigaction (SIGUSR1, &action, NULL);
