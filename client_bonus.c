@@ -37,51 +37,54 @@ int	ft_atoi(const char *nptr)
 	}	
 	return (j * s);
 }
-void reseveid_msg(int sig)
+
+void	reseveid_msg(int sig)
 {
-    if(sig == SIGUSR1)
-        write(1,"OK!",3);  
+	if (sig == SIGUSR1)
+		write(1, "OK!", 3);
 }
+
 void	convert(int number, int pid)
 {
 	int	i;
-	
-		i=0;
-	while(i < 8)
+
+	i = 0;
+	while (i < 8)
 	{
-	   if(number & (128 >> i))
-	   {
-	   		kill(pid,SIGUSR1);
-	   }
-	   else
-	   {
-		   kill(pid,SIGUSR2);
-	   }
-	   usleep(600);
+		if (number & (128 >> i))
+		{
+			kill(pid, SIGUSR1);
+		}
+		else
+		{
+			kill(pid, SIGUSR2);
+		}
+		usleep(600);
 		i++;
 	}
 }
-int main(int argc, char *argv[])
+
+int	main(int argc, char *argv[])
 {
-    int pid;
-	int i;
+	int	pid;
+	int	i;
 
 	signal(SIGUSR1, reseveid_msg);
-	if(argc == 3)
+	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
 		i = 0;
 		while (argv[2][i])
 		{
-    		convert(argv[2][i], pid);
+			convert(argv[2][i], pid);
 			i++;
 		}
 		convert(argv[2][i], pid);
 	}
 	else
 	{
-		write(1,"Problem parameter:",18);
-		write(1,"Name_program,PID and string",27);
-		write(1,"\n",1);
+		write(1, "Problem parameter:", 18);
+		write(1, "Name_program,PID and string", 27);
+		write(1, "\n", 1);
 	}
 }
