@@ -6,11 +6,12 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/04 19:18:05 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:47:48 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+# include <unistd.h>
+# include <signal.h>
 
 void	ft_putnbr(int n)
 {
@@ -43,6 +44,7 @@ void	handler(int sig)
 	static int				nbr;
 	static unsigned char	c;
 
+	
 	if (sig == SIGUSR1)
 	{
 		c = c | (128 >> nbr);
@@ -62,14 +64,13 @@ int	main(void)
 	int					pid;
 
 	action.sa_handler = handler;
+	action.sa_flags = 0;
 	pid = getpid();
 	write(1, "My pid:", 7);
 	ft_putnbr(pid);
 	write(1, "\n", 1);
+	sigaction (SIGUSR1, &action, NULL);
+	sigaction (SIGUSR2, &action, NULL);
 	while (1)
-	{
-		sigaction (SIGUSR1, &action, NULL);
-		sigaction (SIGUSR2, &action, NULL);
 		pause();
-	}
 }
