@@ -6,7 +6,7 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/04 20:43:01 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/09 21:18:02 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	handler(int sig, siginfo_t *info, void *oact)
 	static int				nbr;
 	static unsigned char	c;
 
-	(void) *oact;
+	(void) oact;
 	if (sig == SIGUSR1)
 	{
 		c = c | (128 >> nbr);
@@ -68,7 +68,7 @@ int	main(void)
 	action.sa_sigaction = handler;
 	action.sa_flags = SA_SIGINFO;
 	pid = getpid();
-	write(1, "My pid:\n", 11);
+	write(1, "My pid:", 7);
 	ft_putnbr(pid);
 	write(1, "\n", 1);
 	while (1)
