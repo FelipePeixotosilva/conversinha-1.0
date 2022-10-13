@@ -6,15 +6,13 @@
 #    By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/27 20:14:50 by fpeixoto          #+#    #+#              #
-#    Updated: 2022/10/04 18:56:32 by fpeixoto         ###   ########.fr        #
+#    Updated: 2022/10/12 21:47:35 by fpeixoto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
-
-NAME = minitalk
 
 CLIENT    = client
 SERVER    = server
@@ -26,10 +24,9 @@ SRC_S = server.c
 SRC_C_B	= client_bonus.c 
 SRC_S_B = server_bonus.c
 
-all:    $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+all:    $(CLIENT) $(SERVER)
 
-$(NAME): all
-
+bonus:	$(CLIENT_BONUS) $(SERVER_BONUS)
 
 $(CLIENT): 
 	$(CC) $(CFLAGS) $(SRC_C) -o $(CLIENT)
@@ -37,12 +34,20 @@ $(CLIENT):
 $(SERVER): 
 	$(CC) $(CFLAGS) $(SRC_S)  -o $(SERVER)
 
+$(CLIENT_BONUS):
+	$(CC) $(CFLAGS) $(SRC_C_B)  -o $(CLIENT_BONUS)
+
+$(SERVER_BONUS):
+	$(CC) $(CFLAGS) $(SRC_S_B)  -o $(SERVER_BONUS)
+	
 clean:
 	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
 
 fclean: clean
 	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
 
-re: fclean $(NAME)
+re: fclean $(CLIENT) $(SERVER)
+
+rebonus:	fclean $(CLIENT_BONUS) $(SERVER_BONUS)
 
 .PHONY: all clean fclean re bonus
