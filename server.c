@@ -6,12 +6,11 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/10 20:47:48 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:52:19 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <unistd.h>
-# include <signal.h>
+#include "minitalk.h"
 
 void	ft_putnbr(int n)
 {
@@ -44,7 +43,6 @@ void	handler(int sig)
 	static int				nbr;
 	static unsigned char	c;
 
-	
 	if (sig == SIGUSR1)
 	{
 		c = c | (128 >> nbr);
