@@ -48,7 +48,7 @@ clean:
 	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
 
 fclean: clean
-	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+	$(RM) ./*.a
 
 re: fclean $(NAME)
 
