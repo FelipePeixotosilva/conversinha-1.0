@@ -26,16 +26,19 @@ SRC_S = server.c
 SRC_C_B	= client_bonus.c 
 SRC_S_B = server_bonus.c
 
+OBJS = $(SRC_C:.c=.o) $(SRC_S:.c=.o)
+OBJS_BONUS = $(SRC_C_B:.c=.o) $(SRC_S_B:.c=.o)
+
 all: $(CLIENT) $(SERVER) 
 
 bonus:	$(CLIENT_BONUS) $(SERVER_BONUS)
 
 $(NAME): all
 
-$(CLIENT): 
+$(CLIENT): $(OBJS)
 	$(CC) $(CFLAGS) $(SRC_C) -o $(CLIENT)
 
-$(SERVER): 
+$(SERVER): $(OBJS)
 	$(CC) $(CFLAGS) $(SRC_S)  -o $(SERVER)
 
 $(CLIENT_BONUS):
@@ -45,13 +48,11 @@ $(SERVER_BONUS):
 	$(CC) $(CFLAGS) $(SRC_S_B) -o $(SERVER_BONUS)
 	
 clean:
-	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+	$(RM) $(OBJS) $(OBJS_BONUS) 
 
 fclean: clean
-	$(RM) ./*.a
+	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
 
-re: fclean $(NAME)
-
-rebonus: fclean $(CLIENT_BONUS) $(SERVER_BONUS)
+re: fclean $(NAME) $(CLIENT_BONUS) $(SERVER_BONUS)
 
 .PHONY: all clean fclean re bonus
