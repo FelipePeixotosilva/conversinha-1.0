@@ -6,11 +6,12 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/13 19:52:19 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:11:41 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include <unistd.h>
+#include <signal.h>
 
 void	ft_putnbr(int n)
 {
@@ -67,8 +68,10 @@ int	main(void)
 	write(1, "My pid:", 7);
 	ft_putnbr(pid);
 	write(1, "\n", 1);
-	sigaction (SIGUSR1, &action, NULL);
-	sigaction (SIGUSR2, &action, NULL);
 	while (1)
+	{
+		sigaction (SIGUSR1, &action, NULL);
+		sigaction (SIGUSR2, &action, NULL);
 		pause();
+	}
 }
