@@ -6,7 +6,7 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/09 21:18:02 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:05:33 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(void)
 	int					pid;
 
 	action.sa_sigaction = handler;
-	action.sa_flags = SA_SIGINFO;
+	action.sa_flags = SIGINFO;
 	pid = getpid();
 	write(1, "My pid:", 7);
 	ft_putnbr(pid);
