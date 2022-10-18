@@ -6,11 +6,12 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:52:06 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/17 21:05:33 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/17 21:09:19 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include <unistd.h>
+#include <signal.h>
 
 void	ft_putnbr(int n)
 {
