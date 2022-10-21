@@ -6,12 +6,11 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:44:42 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/17 21:09:36 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:03:06 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <signal.h>
+#include "minitalk_bonus.h"
 
 int	ft_atoi(const char *nptr)
 {
