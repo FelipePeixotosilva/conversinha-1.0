@@ -6,7 +6,7 @@
 /*   By: fpeixoto <fpeixoto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 13:44:42 by fpeixoto          #+#    #+#             */
-/*   Updated: 2022/10/21 20:03:06 by fpeixoto         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:07:44 by fpeixoto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_atoi(const char *nptr)
 	return (j * s);
 }
 
-void	reseveid_msg(int sig)
+void	received_msg(int sig)
 {
 	if (sig == SIGUSR1)
 		write(1, "OK!", 3);
@@ -69,7 +69,7 @@ int	main(int argc, char *argv[])
 	int	pid;
 	int	i;
 
-	signal(SIGUSR1, reseveid_msg);
+	signal(SIGUSR1, received_msg);
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
